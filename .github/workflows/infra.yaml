@@ -2,6 +2,9 @@ name: "Infra"
 
 on: [push]
 
+env:
+  TERRAFORM_DESTROY: true
+
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
@@ -43,8 +46,15 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -var-file="cases/des/terraform.tfvars" -no-color -input=false
-
+        
       - name: Terraform Apply
+        if: ${{ !env.TERRAFORM_DESTROY }}
         id: apply
         run: |
           terraform apply -var-file="cases/des/terraform.tfvars" -auto-approve -input=false
+
+      - name: Terraform Destroy
+        if: ${{ env.TERRAFORM_DESTROY }}
+        id: destroy
+        run: |
+          terraform destroy -var-file="cases/des/terraform.tfvars" -no-color -auto-approve -input=false
