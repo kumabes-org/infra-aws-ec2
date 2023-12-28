@@ -3,7 +3,7 @@ name: "Infra"
 on: [push]
 
 env:
-  TERRAFORM_DESTROY: "false"
+  TERRAFORM_DESTROY: "true"
 
 permissions:
   id-token: write   # This is required for requesting the JWT
