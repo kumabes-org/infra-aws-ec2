@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "008736932128-statefile"
-    key    = "sa-east-1"
-    region = "sa-east-1"
+    bucket  = "008736932128-statefile"
+    key     = "sa-east-1"
+    region  = "sa-east-1"
     encrypt = true
   }
 
