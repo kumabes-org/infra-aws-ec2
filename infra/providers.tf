@@ -7,9 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "${var.aws_account_id}-statefile"
-    key    = var.aws_region
-    region = var.aws_region
+    bucket = "008736932128-statefile"
+    key    = "sa-east-1"
+    region = "sa-east-1"
+    encrypt = true
   }
 
 }
